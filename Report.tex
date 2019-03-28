@@ -1,0 +1,109 @@
+\documentclass[11pt]{article}
+
+\usepackage{amsmath,amsfonts,amssymb,amsthm}
+\usepackage[margin=1in]{geometry}
+\usepackage[colorlinks]{hyperref}
+\usepackage{enumitem}
+\usepackage{graphicx}
+\usepackage{wrapfig}
+\usepackage{ulem}
+
+\newcommand{\C}{{\mathbb{C}}}
+\newcommand{\F}{{\mathbb{F}}}
+\newcommand{\R}{{\mathbb{R}}}
+\newcommand{\Z}{{\mathbb{Z}}}
+
+\newcommand{\ket}[1]{|{#1}\rangle}
+\newcommand{\bra}[1]{\langle{#1}|}
+\newcommand{\braket}[2]{\<{#1}|{#2}\>}
+\newcommand{\norm}[1]{\|{#1}\|}
+\newcommand{\Norm}[1]{\left\|{#1}\right\|}
+
+\newcommand{\eq}[1]{(\ref{eq:#1})}
+\renewcommand{\sec}[1]{Section~\ref{sec:#1}}
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\title{CMSC 457 Project Proposal: Simon's Algorithm}
+
+\author{Jeries Dababneh \and Esteban Duran}
+
+\date{\today}
+\maketitle
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{Overview}
+\label{sec:overview}
+ Given a blackbox function \textit{f}:\{0, 1\}\ensuremath{^{n}}\ensuremath{\rightarrow} \textbf{X} where \textbf{X} is a finite subset of results, and we are promised that there exists some \textbf{s} = \textit{\ensuremath{{s_1s_2...s_n}}}  such that f(\textbf{x}) = f(\textbf{y}) \textbf{\textit{iff}} \textbf{x = y} or \textbf{x}  \textbf{= y \ensuremath{\oplus} s}. By querying \textit{f}, the goal of Simon's Algorithm is to find \textbf{s} \cite{SA}. \newline \newline Due to the nature of this problem, this algorithm has also been the inspiration for Shor's algorithm, an algorithm for integer factorization that runs in polynomial time using quantum resources. This poses a problem for many of our internet protocols today such as Symmetric-Key Cryptographic Primitives \cite{SS}, which is chaotic for our current encryption and able break many classical systems we take for granted.\newline \newline
+Solving Simon's Algorithm with probability \ensuremath{\frac{2}{3}} classically according to \emph{Theorem 6.5.1}, and the birthday problem generalization \cite{BD}, solving Simon's problem runs in \ensuremath{\Omega(2^\frac{n}{3}}\end{e}), however, the quantum implementation with the same probability runs in O(\ensuremath{n^3}), only requiring n + O(1) queries \cite{KLM}. This is an exponential speed up. \newline \newline
+We plan to implement Simon's Algorithm using the IBM Quantum Experience and Qiskit, an open-source framework that allows us to work with Quantum Computers \cite{QE} \cite{QS}. This will help us learn more about quantum computing in a more hands-on experience. Alongside the implementation we shall provide, our final report shall include documentation, results of experiments, and will make connections between Simon's Algorithm and other important algorithms inspired by Simon's findings. 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{Timeline}
+\label{sec:timeline}
+
+\begin{itemize}[nosep]
+  \item Learn the Algorithm (Feb 25): We will focus on learning about the algorithm for the first part. Research the problem, algorithm, and review different sources that discuss it. \newline
+  \item Learn about the Quantum Experience and Qiskit (Mar 4): Second step is for us to learn how to use the Q Experience/Qiskit. This can be done by reviewing any documentation provided by IBM about their respective subjects. \newline
+  \item Midterm Report (Mar 28): By the time the midterm report is due, we should have a clear understanding of what we're working with, set up some of the ground work for the implementation, as well as some documentation. More time towards the end means being able to explore more complex uses of this algorithm. \newline
+  \item Implement the Algorithm (Apr 15): Implementation should be over at this point. After this point, all we need to do is fine tune our approach, documentation, and consider the possibility of expansion. \newline
+  \item Documentation and Testing (Apr 29): Documentation needs to be finalized, as well as debugging any issues that might arise. This	will include the technical details that we had to implement, explanations for why we decided to do things a certain way, 	etc... This should be done in parallel with implementation, though, an extra two weeks will allow for more revising 
+  	documentation, elaborating, and editing in general. This should also include the results of different runs or "experiments" to validate and verify our implentation. \newline \break
+\item Further Exploration (May 7): At this time, we should have explored more complex problems that use Simon's problem
+	as a stepping stone. We should be able to connect Simon's algorithm to at least 2 other practical problems, and explain their significance in the real world. \newline
+  \item Final Report + Presentation (May 14): The final 2 weeks of the semester, we need to have everything done 
+  	for presenting our work to the class. Between the presentation and the final report (on May 14th), we should only
+	have to do minimal editing to finalize our report. 
+\end{itemize}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section*{Progress Report}
+\label{sec:progressreport}
+
+ 1. Learning the algorithm: class lectures, Simon's Paper, and general research helped us understand the problem, the algorithm that solves it, and provided us with a circuit representation as well as pseudocode.\begin{figure}[h]\centering \includegraphics[width=75mm]{pseudocode} \caption{A snapshot of the pseudocode presented in "An Introduction to Quantum Computing"}\end{figure} \begin{figure}[h]\centering \includegraphics[width=75mm]{circuit} \caption{Circuit diagram of the quantum part of Simon's Algorithm as presented in "An Introduction to Quantum Computing"}\end{figure}}\newline
+ 
+ 2. Quantum Experience and Qiskit: We looked at the different tutorials for Quantum Experience, and Qiskit. In the beginning, we were confused about using one over the other, when in reality, they go hand in hand. Quantum Experience has an interface that allows the developer to see the effect of adding gates, quantum registers, and classical ones, as well as measurement, and how that is represented in code (in the composer). However, it is limited to what you can do, for example, you can not loop using only the quantum experience (Looping is required in Simon's Algorithm to be able to construct the linear system that will be solved, to find \emph{s}. This is where Qiskit comes in, Qiskit is an open-source framework (in Python) that allows anyone to work with Quantum Computers. Qiskit has four foundational elements, Terra, Aqua, Ignis, and Aer. Each element addresses one part of the software development process. Our implementation will use Terra heavily, because it provides the foundation for composing quantum programs at the level of circuits and pulses. 
+ 
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section*{Contributions}
+\label{sec:contributions}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\bibliography{mybib}{}
+\bibliographystyle{plain}
+\begin{thebibliography}{9}
+
+
+
+\bibitem{SA}
+D. Simon, \emph{On the Power of Quantum Computation}, \begin{e} \tt{10.1137/S0097539796298637 [doi.org] (1997)} \end{e}
+
+\bibitem{SS}
+T. Santoli and C. Schaffner, \emph{Using Simon's Algorithm to Attack Symmetric-Key Cryptographic Primitives}, \begin{e} {\tt arXiv:1603.07856  [math.FA] (2017)} \end{e}
+
+\bibitem{BD}
+S. Fadnavis \emph{A Generalization Of The Birthday Problem}, \begin{e}{\tt arXiv:1105.0698v3 [math.CO] (2015)} \end{e}
+
+\bibitem{KLM}
+P. Kaye, R. Laflamme and M. Mosca, \emph{An Introduction to Quantum Computing}, \begin{e}{\tt Introductory Quantum Algorithms: Simon's Algorithm (2007)} \end{e}
+
+\bibitem{QE}
+Quantum Experience Webpage, \begin{e} \tt{https://quantumexperience.ng.bluemix.net/qx/experience} \end{e}
+
+\bibitem{QS}
+Qiskit Documentation, \begin{e} \tt{https://qiskit.org/documentation/} \end{e}
+
+
+
+
+
+\end{thebibliography}
+
+\end{document}
