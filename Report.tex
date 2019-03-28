@@ -63,15 +63,33 @@ We plan to implement Simon's Algorithm using the IBM Quantum Experience and Qisk
 \section*{Progress Report}
 \label{sec:progressreport}
 
- 1. Learning the algorithm: class lectures, Simon's Paper, and general research helped us understand the problem, the algorithm that solves it, and provided us with a circuit representation as well as pseudocode.\begin{figure}[h]\centering \includegraphics[width=75mm]{pseudocode} \caption{A snapshot of the pseudocode presented in "An Introduction to Quantum Computing"}\end{figure} \begin{figure}[h]\centering \includegraphics[width=75mm]{circuit} \caption{Circuit diagram of the quantum part of Simon's Algorithm as presented in "An Introduction to Quantum Computing"}\end{figure}}\newline
+ 1. Learning the algorithm: class lectures, Simon's Paper, and general research helped us understand the problem, the algorithm that solves it, and provided us with a circuit representation as well as pseudocode.\begin{figure}[h]\centering \includegraphics[width=75mm]{pseudocode} \caption{A snapshot of the pseudocode presented in "An Introduction to Quantum Computing"}\end{figure} \begin{figure}[h]\centering \includegraphics[width=50mm]{circuit} \caption{Circuit diagram of the quantum part of Simon's Algorithm as presented in "An Introduction to Quantum Computing"}\end{figure}}\newline
  
- 2. Quantum Experience and Qiskit: We looked at the different tutorials for Quantum Experience, and Qiskit. In the beginning, we were confused about using one over the other, when in reality, they go hand in hand. Quantum Experience has an interface that allows the developer to see the effect of adding gates, quantum registers, and classical ones, as well as measurement, and how that is represented in code (in the composer). However, it is limited to what you can do, for example, you can not loop using only the quantum experience (Looping is required in Simon's Algorithm to be able to construct the linear system that will be solved, to find \emph{s}. This is where Qiskit comes in, Qiskit is an open-source framework (in Python) that allows anyone to work with Quantum Computers. Qiskit has four foundational elements, Terra, Aqua, Ignis, and Aer. Each element addresses one part of the software development process. Our implementation will use Terra heavily, because it provides the foundation for composing quantum programs at the level of circuits and pulses. 
+ 2. Sharing the work load: We have decided to create a github repository to share version controlled code between the two of us, this way we can work remotely on updated code all the time. \newline
  
+\begin{figure}[h]\centering \includegraphics[width=100mm]{QE} \caption{A snapshot of the quantum circuit and its code, missing the blackbox function (why Qiskit is needed)}\end{figure} 
+ 3. Attempting to implement Algorithm: In the beginning, we only looked at the Quantum Experience. It was very helpful for us to understand how the circuits can be built, how quantum states are prepared in these circuits, how measurement is done, and how the different quantum and classical registers interact. However, we ran into the problem that we need to loop over the circuit many times, and we need a blackbox function. Qiskit solves this problem, since it is the missing link that we need to implement the algorithm, by providing a library that facilitates use of IBM's quantum computers but also have classical subroutines.  \newline
+ 
+ 4. Qiskit: We looked at the different tutorials for Qiskit. In the beginning, we were confused about using one over the other, when in reality, they go hand in hand. Quantum Experience has a helpful interface that allows the developer to see the quantum circuit and its code representation. However, it is limited to what you can do, for example, you can not loop using only the quantum experience (Looping is required in Simon's Algorithm to be able to construct the linear system that will be solved, to find \emph{s}. This is where Qiskit comes in, Qiskit is an open-source framework (in Python) that allows anyone to work with Quantum Computers. Qiskit has four foundational elements, Terra, Aqua, Ignis, and Aer. Each element addresses one part of the software development process. Our implementation will use Terra heavily, because it provides the foundation for composing quantum programs at the level of circuits and pulses. We have found many helpful tutorials that will allow us to implement Simon's algorithm easily, and show us how to do much of the set up to make quantum circuits on the quantum experience in a Python environment. Using Qiskit, we can also document results, run different examples, and get the accompanying statistics. \newline
+ \newline 
+** To be Done: Implement the Algorithm, Expand the Algorithm to more complex problems
+ 
+
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
+\break
 \section*{Contributions}
+Jeries Dababneh: \begin{itemize}
+\item Explored Quantum Experience by making a small circuit based on the quantum circuit used in Simon's Algorithm.
+\item Research about Simon's Algorithm, Quantum Circuits, and found helpful sources
+\item Set up the github repository for version control between the contributors
+\end{itemize}
+Esteban Duran:  \begin{itemize}
+\item Explored Qiskit and its documentation
+\item Found helpful sources like Simon's original paper
+\item Learnt how Qiskit works, and found relevant tutorials needed for our understanding on the use of Terra
+\end{itemize}
 \label{sec:contributions}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
