@@ -2,14 +2,24 @@
 import numpy as np
 from qiskit import QuantumCircuit, ClassicalRegister, QuantumRegister
 from qiskit import execute
+import random
 
 num_qubits = 4
 
 q = QuantumRegister(num_qubits) # 4 qubit register
-circ = QuantumCircuit(q) # Quantum Circuit on q
+c = ClassicalRegister(1) # 1 classical register
+circ = QuantumCircuit(q, c) # Quantum Circuit on q
 
-for i in range(num_qubits/2 + 1):
+for i in range(0, int(num_qubits/2)):
     circ.h(q[i])
     #print("Hadamard on q[%d]" % i)
+print(circ)
 
-circ.draw()
+#generating random secret
+secret = ""
+for i in range(0, int(num_qubits/2)):
+    secret += str(random.randint(0, 10000)%2) #binary string
+
+print(secret)
+
+
