@@ -7,7 +7,7 @@ import random
 num_qubits = 4
 
 q = QuantumRegister(num_qubits) # 4 qubit register
-c = ClassicalRegister(1) # 1 classical register
+c = ClassicalRegister(int(num_qubits/2)) # 1 classical register
 circ = QuantumCircuit(q, c) # Quantum Circuit on q
 
 #generating random secret
