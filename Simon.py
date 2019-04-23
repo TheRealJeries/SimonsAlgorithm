@@ -52,9 +52,8 @@ for i in range(0, regs):
     circ.cx(q[i], q[i+regs])
     #copying first half of registers to second half
 circ.barrier()
-length = len(secret)
     
-for i in range(0, length):
+for i in range(0, regs):
     if secret[i] == '1':
         circ.x(q[i+regs])
         circ.cx(q[i], q[i+regs])
