@@ -3,6 +3,11 @@ import numpy as np
 #import qiskit_aqua.components.oracles 
 from qiskit import QuantumCircuit, ClassicalRegister, QuantumRegister
 from qiskit import execute
+from qiskit.tools.monitor import job_monitor
+from qiskit import execute, BasicAer
+from qiskit.providers.ibmq import least_busy
+from qiskit.tools.visualization import plot_state_city, plot_histogram
+import pylab
 import random
     
 regs = 2
@@ -12,8 +17,14 @@ c = ClassicalRegister(regs) # classical register
 circ = QuantumCircuit(q, c) # Quantum Circuit on q
 secret = None
 number = None
+simulate = True
+backend = None
+job = None
+result = None
+outputstate = None
+counts = None
 
-    
+#generating random secret
 def gen_rand():
     number = 0
     secret = [None] * regs
@@ -30,8 +41,6 @@ def gen_rand():
     #    return gen_rand()
 
     return number, secret
-    
-#generating random secret
 
 
 number, secret = gen_rand()
@@ -41,7 +50,6 @@ for i in range(0, len(secret)):
     print(">> secret[%d] is %s" %(i,secret[i]))
 #print("secret[0] is %c" %secret[0])
 print(">> secret is: "+''.join(secret)+"\n")
-
 for i in range(0, regs):
     circ.h(q[i])
     #print("Hadamard on q[%d]" % i)
@@ -58,7 +66,6 @@ for i in range(0, regs):
         #circ.x(q[i+regs])
         circ.cx(q[i], q[i+regs])
 
-
     
 # for i in range(0, regs):
     #if i % 2 == 0:
@@ -68,6 +75,23 @@ for i in range(0, regs):
 #    0
 circ.barrier()
 print(circ)
+        
+if simulate:
+    backend = BasicAer.get_backend('statevector_simulator')
+    job = execute(circ, backend, shots = 1000)
+    result = job.result()
+    outputstate = result.get_statevector(circ, decimals=3)
+    counts = result.get_counts(circ)
+    print(counts)
+    plot_histogram(counts)
+    #print(outputstate)
+    #plot_state_city(outputstate)
+    #pylab.show()
+else:
+    print("here")
+        
+
+
 
 
 
