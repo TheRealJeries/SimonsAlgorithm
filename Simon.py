@@ -34,6 +34,7 @@ def gen_rand():
 
 
 number, secret = gen_rand()
+print("binary is: "+"{0:b}".format(number))
 print("number is %d" %number)
 for i in range(0, len(secret)):
     print(">> secret[%d] is %s" %(i,secret[i]))
@@ -50,12 +51,12 @@ for i in range(0, regs):
     circ.cx(q[i], q[i+regs])
     #copying first half of registers to second half
 
-for i in range(0, regs):
+# for i in range(0, regs):
     #if i % 2 == 0:
      #   circ.x(q[i])
     #else:
      #   circ.cx(q[i-1], q[i])
-    0
+#    0
 circ.barrier()
 print(circ)
 
