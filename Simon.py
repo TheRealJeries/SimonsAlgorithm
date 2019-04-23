@@ -1,5 +1,6 @@
 # imports
 import numpy as np
+import qiskit_aqua.components.oracles 
 from qiskit import QuantumCircuit, ClassicalRegister, QuantumRegister
 from qiskit import execute
 import random
@@ -23,12 +24,12 @@ def gen_rand():
         print("rand is %d" %rand)
         secret[j] = str(rand) #binary string
         j -= 1
-    if number == 0:
-        secret = []
-        j = regs-1
-        return gen_rand()
-    else:
-        return number, secret
+    #if number == 0:
+    #    secret = []
+    #    j = regs-1
+    #    return gen_rand()
+
+    return number, secret
     
 #generating random secret
 
@@ -50,7 +51,16 @@ circ.barrier()
 for i in range(0, regs):
     circ.cx(q[i], q[i+regs])
     #copying first half of registers to second half
+circ.barrier()
+length = len(secret)
+    
+for i in range(0, length):
+    if secret[i] == '1':
+        circ.x(q[i+regs])
+        circ.cx(q[i], q[i+regs])
 
+
+    
 # for i in range(0, regs):
     #if i % 2 == 0:
      #   circ.x(q[i])
