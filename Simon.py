@@ -55,7 +55,7 @@ circ.barrier()
     
 for i in range(0, regs):
     if secret[i] == '1':
-        circ.x(q[i+regs])
+        #circ.x(q[i+regs])
         circ.cx(q[i], q[i+regs])
 
 
