@@ -1,6 +1,6 @@
 # imports
 import numpy as np
-import qiskit_aqua.components.oracles 
+#import qiskit_aqua.components.oracles 
 from qiskit import QuantumCircuit, ClassicalRegister, QuantumRegister
 from qiskit import execute
 import random
