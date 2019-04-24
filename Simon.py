@@ -1,6 +1,6 @@
 # imports
 import numpy as np
-import qiskit_aqua.components.oracles 
+#import qiskit_aqua.components.oracles 
 from qiskit import QuantumCircuit, ClassicalRegister, QuantumRegister
 from qiskit import execute
 import random
@@ -52,11 +52,10 @@ for i in range(0, regs):
     circ.cx(q[i], q[i+regs])
     #copying first half of registers to second half
 circ.barrier()
-length = len(secret)
     
-for i in range(0, length):
+for i in range(0, regs):
     if secret[i] == '1':
-        circ.x(q[i+regs])
+        #circ.x(q[i+regs])
         circ.cx(q[i], q[i+regs])
 
 
