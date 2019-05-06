@@ -6,6 +6,7 @@ from qiskit import execute
 from qiskit.tools.monitor import job_monitor
 from qiskit import execute, BasicAer
 from qiskit.providers.ibmq import least_busy
+import matplotlib.pyplot
 from qiskit.tools.visualization import plot_state_city, plot_histogram
 import pylab
 import random
@@ -65,8 +66,7 @@ for i in range(0, regs):
     if secret[i] == '1':
         #circ.x(q[i+regs])
         circ.cx(q[i], q[i+regs])
-
-    
+        
 # for i in range(0, regs):
     #if i % 2 == 0:
      #   circ.x(q[i])
@@ -74,14 +74,17 @@ for i in range(0, regs):
      #   circ.cx(q[i-1], q[i])
 #    0
 circ.barrier()
+for i in range(0, regs):
+    circ.h(q[i])
+    circ.measure(q[i], c[i])
 print(circ)
         
 if simulate:
-    backend = BasicAer.get_backend('statevector_simulator')
+    backend = BasicAer.get_backend('qasm_simulator')
     job = execute(circ, backend, shots = 1000)
     result = job.result()
-    outputstate = result.get_statevector(circ, decimals=3)
-    counts = result.get_counts(circ)
+    #outputstate = result.get_statevector(circ, decimals=3)
+    counts = job.result().get_counts(circ)
     print(counts)
     plot_histogram(counts)
     #print(outputstate)
