@@ -93,6 +93,7 @@ for r in range(rows):
         tStr = " + ".join(Yr)
         print(tStr, "= 1")
 M
+<<<<<<< HEAD
 
 def ibmcomputer():
     from qiskit import IBMQ
@@ -117,3 +118,5 @@ def ibmcomputer():
     answer = res.get_counts(circ)
 
     plot_histogram(answer)
+=======
+>>>>>>> d4416e78964b666564803d5f85b6eda143fbd63c
