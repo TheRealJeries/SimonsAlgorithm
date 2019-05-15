@@ -94,3 +94,26 @@ for r in range(rows):
         print(tStr, "= 1")
 M
 
+def ibmcomputer():
+    from qiskit import IBMQ
+    IBMQ.load_accounts()
+    
+    print("Available backends:")
+    IBMQ.backends()
+    
+    from qiskit.providers.ibmq import least_busy
+
+    large_enough_devices = IBMQ.backends(filters=lambda x: x.configuration().n_qubits > 3 and not x.configuration().simulator)
+    backend = least_busy(large_enough_devices)
+    print("The best backend is " + backend.name())
+    
+    from qiskit.tools.monitor import job_monitor
+    shots = 50*n
+    max_credits = 3
+    job_exp = execute(circ, backend, shots = shots, max_credits=max_credits)
+    job_monitor(job_exp)
+    
+    res = job_exp.result()
+    answer = res.get_counts(circ)
+
+    plot_histogram(answer)
